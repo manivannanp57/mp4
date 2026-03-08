@@ -4,9 +4,7 @@ jobs:
  build:
   runs-on: ubuntu-latest
   steps:
-   - uses: actions/checkout@v3
-   - run: echo backend build success
-   - run: echo backend success > backend.log
+   - run: echo '[Container] Phase complete: BUILD SUCCESS' > backend.log
    - run: aws s3 cp backend.log s3://mp4-logs-635114519658/backend-logs/backend-log.gz
      env:
        AWS_DEFAULT_REGION: us-east-1

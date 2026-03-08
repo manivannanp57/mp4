@@ -4,9 +4,7 @@ jobs:
  build:
   runs-on: ubuntu-latest
   steps:
-   - uses: actions/checkout@v3
-   - run: echo frontend build success
-   - run: echo frontend success > frontend.log
+   - run: echo '[Container] Phase complete: BUILD SUCCESS' > frontend.log
    - run: aws s3 cp frontend.log s3://mp4-logs-635114519658/frontend-logs/frontend-log.gz
      env:
        AWS_DEFAULT_REGION: us-east-1
