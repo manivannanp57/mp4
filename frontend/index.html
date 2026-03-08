@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MP4 Frontend</title>
+</head>
+
+<body>
+<h2>MP4 Cloud App</h2>
+
+<input id="name" placeholder="enter name"/>
+<button onclick="send()">Send</button>
+
+<pre id="output"></pre>
+
+<script>
+
+const API="http://mp4-backend-env.eba-zmt7mc3z.us-east-1.elasticbeanstalk.com";
+
+async function send(){
+  const name=document.getElementById("name").value;
+
+  await fetch(API+"/data",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({name})
+  });
+
+  load();
+}
+
+async function load(){
+  const res=await fetch(API+"/data");
+  const data=await res.json();
+  document.getElementById("output").innerText=JSON.stringify(data,null,2);
+}
+
+load();
+
+</script>
+
+</body>
+</html>
