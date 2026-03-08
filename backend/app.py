@@ -17,9 +17,9 @@ def get_conn():
         cursorclass=pymysql.cursors.DictCursor
     )
 
-@app.route("/health")
+@app.route("/health", methods=["GET"])
 def health():
-    return jsonify({"status":"ok"})
+    return jsonify({"status":"healthy"}), 200
 
 @app.route("/events", methods=["POST"])
 def insert_event():
@@ -46,7 +46,7 @@ def insert_event():
 
     conn.close()
 
-    return jsonify({"status":"inserted"})
+    return jsonify({"message":"Event created successfully"}), 201
 
 
 def fetch_events():
